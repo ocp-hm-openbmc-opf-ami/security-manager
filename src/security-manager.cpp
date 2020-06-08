@@ -639,8 +639,7 @@ static bool startAtScaleDebugMonitor()
             {
 
                 std::cerr << "Failed to get SubTree for "
-                             "BaseBoard \n";
-                return;
+                             "BaseBoard and wait for InterfaceAdded Signal \n";
             }
             const std::string match = "board";
 
