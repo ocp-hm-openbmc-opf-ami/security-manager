@@ -124,6 +124,7 @@ static void checkUserSecurityBreach()
     if ((passwd)() == NULL)
     {
         std::cerr << "\nSecurity-manager :Error in opening passwd file \n";
+        return;
     }
 
     while (true)
