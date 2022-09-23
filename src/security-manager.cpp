@@ -25,6 +25,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio.hpp>
 #include <boost/asio/posix/stream_descriptor.hpp>
+#include <boost/container/flat_map.hpp>
 #include <gpiod.hpp>
 #include <iostream>
 #include <sdbusplus/asio/connection.hpp>
