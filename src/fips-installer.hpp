@@ -56,7 +56,7 @@ class FIPSInstaller
     std::shared_ptr<sdbusplus::asio::dbus_interface> providerIntf;
     std::shared_ptr<sdbusplus::asio::dbus_interface> modeIntf;
     std::string fipsVersion = "na";
-    const std::vector<std::string> availableProvider{"3.0.8"};
+    const std::vector<std::string> availableProvider{"3.0.9"};
     static const inline std::chrono::seconds pollInterval{2};
 }; // class FIPSInstaller
 

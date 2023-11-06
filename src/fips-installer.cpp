@@ -262,7 +262,7 @@ std::string FIPSInstaller::getFIPSProviderInstalled(void)
     bool isFound = readBuf.find(fipsConfig) != std::string::npos;
     if (isFound)
     {
-        return "3.0.8";
+        return "3.0.9";
     }
     return "na";
 }
