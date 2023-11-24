@@ -173,7 +173,7 @@ bool FIPSInstaller::disableFIPS(void)
     if (fipsVersion == "na")
     {
         std::cerr << "FIPS is currently Disabled \n";
-        return false;
+        return true;
     }
     if (!readOpenSSLConfig(readBuf))
     {
@@ -202,13 +202,14 @@ bool FIPSInstaller::enableFIPS(boost::asio::yield_context& yield,
                                std::string version)
 {
     boost::system::error_code ec;
+    if (version == fipsVersion)
+    {
+        std::cerr << "FIPS is currently Enabled \n";
+        return true;
+    }
     if (!isValidVersion(version))
     {
         std::cerr << "FIPS Provider Version is Invalid: \n" << version;
-        return false;
-    }
-    if (version == fipsVersion)
-    {
         return false;
     }
     if (!installFIPSConfig())
