@@ -1,4 +1,4 @@
-#Security Manager
+# Security Manager
 In OpenBMC, AtScaleDebug (ASD) feature should be enabled only by special user
 when RemoteDebug feature is enabled in platform. Administrator need to know
 whenever ASD feature/special user is enabled or disabled.
@@ -230,3 +230,35 @@ When weak hash algorithm is enabled,
             .severity = "Critical",
             .resolution = "None.",
         }},
+
+## Dependency
+security manager have following compile dependencies
+* sdbusplus
+* gpiodcxx
+* systemd
+* boost
+
+Runtime dependency to maintain FIPS status
+* openssl (with fips module)
+
+## Compilation
+```
+mkdir build
+cd build
+cmake ../
+make
+```
+## FIPS
+Following interfaces are exposed for controlling openssl mode
+
+| Interface  | method/property | details                        | 
+| ------------- | ------------- | ------------------------------ |
+| com.intel.fips.mode  | DisableFips  | This method disables fips mode in BMC |
+| com.intel.fips.mode  | EnableFips   | This method enables FIPS mode. It takes fips provider version number as string arguemnt |
+| com.intel.fips.providers  |  AvailableProviders  | property showing list of available FIPS providers. This is argument to EnableFips method |
+| com.intel.fips.status  | Enabled  | property showing if FIPS mode is enabled |
+| com.intel.fips.status  | Version  | Version of FIPS provider that is under use. This is NA if FIPS is not enabled |
+
+method/property names prefixed with com.intel.fips control openssl configuration to do desired action mentioned in above table.
+
+REMOTE_DEBUG_ENABLE gpio line is used for controlling at scale debug service. This GPIO is active high. At scale debug service will be enabled if REMOTE_DEBUG_ENABLE is high and disabled otherwise.
