@@ -1,9 +1,0 @@
-[Unit]
-Description=FIPS Config Installer - Installs fipsmodule.cnf
-
-[Service]
-ExecStart=openssl fipsinstall -pedantic -module /usr/lib/ossl-modules/fips.so -out /etc/ssl/fipsmodule.cnf
-Type=oneshot
-RemainAfterExit=true
-SyslogIdentifier=fipsConfig-Installer
-

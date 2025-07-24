@@ -17,7 +17,6 @@
 #include "security-manager.hpp"
 
 #include "file.hpp"
-#include "fips-installer.hpp"
 
 #include <pwd.h>
 #include <shadow.h>
@@ -736,10 +735,6 @@ int main()
     security_manager::conn->request_name(securityManagerService);
     sdbusplus::asio::object_server server =
         sdbusplus::asio::object_server(security_manager::conn);
-
-    security_manager::FIPSInstaller fipsInstaller(
-        security_manager::io, security_manager::conn, server);
-
     // Start the monitoring  based on the platform id
     security_manager::startAtScaleDebugMonitor();
 

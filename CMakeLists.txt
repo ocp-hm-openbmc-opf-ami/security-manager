@@ -25,7 +25,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lstdc++fs \
 set (CMAKE_CXX_STANDARD 23)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable (security-manager "src/security-manager.cpp" "src/fips-installer.cpp")
+add_executable (security-manager src/security-manager.cpp)
 
 target_include_directories (security-manager PRIVATE ${CMAKE_SOURCE_DIR})
 
@@ -33,7 +33,6 @@ target_link_libraries (${PROJECT_NAME} -lstdc++fs)
 target_link_libraries (${PROJECT_NAME} gpiodcxx)
 target_link_libraries (${PROJECT_NAME} systemd)
 target_link_libraries (${PROJECT_NAME} sdbusplus)
-target_link_libraries (${PROJECT_NAME} boost_coroutine)
 
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 
@@ -51,6 +50,8 @@ add_definitions (-DBOOST_ERROR_CODE_HEADER_ONLY)
 add_definitions (-DBOOST_SYSTEM_NO_DEPRECATED)
 add_definitions (-DBOOST_ALL_NO_LIB)
 add_definitions (-DBOOST_NO_RTTI)
+add_definitions (-DBOOST_NO_TYPEID)
+add_definitions (-DBOOST_ASIO_DISABLE_THREADS)
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-rtti")
@@ -61,6 +62,5 @@ pkg_get_variable(SYSTEMD_SYSTEM_UNIT_DIR systemd systemdsystemunitdir)
 set (
     SERVICE_FILES
     ${PROJECT_SOURCE_DIR}/service_files/xyz.openbmc_project.SecurityManager.service
-    ${PROJECT_SOURCE_DIR}/service_files/com.intel.FipsConfigInstaller.service
 )
 install (FILES ${SERVICE_FILES} DESTINATION "${SYSTEMD_SYSTEM_UNIT_DIR}")
