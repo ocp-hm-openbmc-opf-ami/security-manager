@@ -723,22 +723,30 @@ static bool startAtScaleDebugMonitor()
 
 int main()
 {
+    try
+    {
+        const static constexpr char* securityManagerService =
+            "xyz.openbmc_project.SecurityManager";
 
-    const static constexpr char* securityManagerService =
-        "xyz.openbmc_project.SecurityManager";
+        // setup connection to dbus
+        security_manager::conn =
+            std::make_shared<sdbusplus::asio::connection>(security_manager::io);
 
-    // setup connection to dbus
-    security_manager::conn =
-        std::make_shared<sdbusplus::asio::connection>(security_manager::io);
+        // Security manager  Object
+        security_manager::conn->request_name(securityManagerService);
+        sdbusplus::asio::object_server server =
+            sdbusplus::asio::object_server(security_manager::conn);
+        // Start the monitoring  based on the platform id
+        security_manager::startAtScaleDebugMonitor();
 
-    // Security manager  Object
-    security_manager::conn->request_name(securityManagerService);
-    sdbusplus::asio::object_server server =
-        sdbusplus::asio::object_server(security_manager::conn);
-    // Start the monitoring  based on the platform id
-    security_manager::startAtScaleDebugMonitor();
-
-    security_manager::io.run();
+        security_manager::io.run();
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Security manager failed with exception: "
+                  << e.what() << "\n";
+        return -1;
+    }
 
     return 0;
 }
