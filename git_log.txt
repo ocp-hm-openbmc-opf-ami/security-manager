@@ -1,0 +1,375 @@
+commit f00a08b9ccdc0ddf4e33084bd9d8a3177d65f710
+Author: Maciej Stanczew <maciej.stanczew@intel.com>
+Date:   Wed Aug 9 17:12:00 2023 +0200
+
+    Fix type conversions
+    
+    Upstream-Status: Pending
+
+Notes (devtool):
+    original patch: 0001-Fix-type-conversions.patch
+
+commit f72b75de64dbd15f869ae2164184f82cdc05e2de
+Author: smahankx <satish.kumarx.mahankali@intel.com>
+Date:   Fri Jun 5 21:54:03 2026 +0530
+
+    Coverity: Fix misc. issues (#22)
+
+commit 6d5acf2ad5cbf8eeab76280da6b5e6fecf6f0958
+Author: Jayaprakash Mutyala <mutyalax.jayaprakash@intel.com>
+Date:   Thu Jul 24 23:50:45 2025 +0530
+
+    Revert "FIPS Provider Enablement (#6)" (#16)
+    
+    * Revert "FIPS Provider Enablement (#6)"
+    
+    This reverts commit 969e945f0e9d756527aceba7c76ff710a39f1cca.
+    
+    * Reverted some changes
+    
+    Reverted com.intel.FipsConfigInstaller.service
+    
+    Signed-off-by: Jayaprakash Mutyala <mutyalax.jayaprakash@intel.com>
+    
+    * Remove FIPS
+    
+    Remove FIPS
+    
+    Signed-off-by: Jayaprakash Mutyala <mutyalax.jayaprakash@intel.com>
+    
+    * Update src/security-manager.cpp
+    
+    Revert this chang
+    
+    Co-authored-by: Jason M. Bills <jason.m.bills@intel.com>
+    
+    ---------
+    
+    Signed-off-by: Jayaprakash Mutyala <mutyalax.jayaprakash@intel.com>
+    Co-authored-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 49ebbc1163cd0fde4bac5f3a6899b36c0512ad63
+Author: Terry Duncan <terry.s.duncan@intel.com>
+Date:   Thu May 1 08:31:01 2025 -0700
+
+    Revert license collab (#15)
+    
+    * Revert "According LICENSE-collab.md to intel-collab policy"
+    
+    This reverts commit 3bd80bb6d2628381ae0429edd1ea3dc22325de57.
+    
+    * Revert "According README-collab.md to intel-collab policy"
+    
+    This reverts commit 2d541b4f8d3b5f4ab5ef9424837c147a3f8d0cf6.
+
+commit 3bd80bb6d2628381ae0429edd1ea3dc22325de57
+Author: sys-1sgithubsupport <sys_1sgithubsupport@intel.com>
+Date:   Fri Apr 25 04:56:22 2025 +0530
+
+    According LICENSE-collab.md to intel-collab policy
+
+commit 2d541b4f8d3b5f4ab5ef9424837c147a3f8d0cf6
+Author: sys-1sgithubsupport <sys_1sgithubsupport@intel.com>
+Date:   Fri Apr 25 04:56:21 2025 +0530
+
+    According README-collab.md to intel-collab policy
+
+commit e631e39a6383d3ac7e9734fdd9e7461ab69d72d3
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Wed Apr 23 07:57:34 2025 -0600
+
+    Update to C++23 (#14)
+    
+    Update to C++23 which is required for sdbusplus
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit f558f474cc99b6814538868256a4ced79862ead1
+Author: Vikash Chandola <vikash.chandola@intel.com>
+Date:   Mon Apr 7 17:02:23 2025 +0530
+
+    Add integration guide (#12)
+    
+    Adds integration guide for security manager.
+    
+    ---------
+    Signed-off-by: Vikash Chandola <vikash.chandola@intel.com>
+
+commit 8933afd35909bb4a2afb0885c8ee711a12e38c03
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Thu Feb 27 08:59:36 2025 -0700
+
+    Fix build issues with boost 1.87 (#13)
+    
+    Update deprecated terminology that was removed in boost 1.87.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit aaceb3c4c4c1cb2ef0e0327638c1c5c0e35b3d87
+Author: Prithvi A Pai <prithvi.a.pai@intel.com>
+Date:   Fri Nov 24 09:44:47 2023 +0530
+
+    FIPS: Handle return value for enable/disable (#11)
+    
+    Earlier on enabling FIPS multiple times in a row false was returned.
+    This made it impossible to distinguish between bad request body and
+    enabling FIPS consequently. Hence we are returning true when FIPS is
+    enabled already and user requests to enable again.
+    
+    Tested:
+    1) Success is returned and same is reflected in interface(Rest client)
+    
+    Signed-off-by: Prithvi A Pai <prithvi.a.pai@intel.com>
+
+commit 7add9ded3a91cf6c2ef7a786367335a9e587fa53
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Fri Nov 17 12:26:41 2023 -0700
+
+    Update LICENSE (#7)
+    
+    Update LICENSE with full text
+
+commit 1ecfe9d4797e0382d335a3485723891f6b637367
+Author: Prithvi A Pai <prithvi.a.pai@intel.com>
+Date:   Mon Nov 6 20:06:21 2023 +0530
+
+    Upgrade FIPS for OpenSSL (#10)
+    
+    OpenSSL has released new FIPS support 3.0.9.
+    Adding same in OpenBMC
+    
+    Tested:
+    1) BMC builds fine
+    2) FIPS functionality works fine
+    
+    Signed-off-by: Prithvi A Pai <prithvi.a.pai@intel.com>
+
+commit 969e945f0e9d756527aceba7c76ff710a39f1cca
+Author: Prithvi A Pai <prithvi.a.pai@intel.com>
+Date:   Wed Sep 13 10:04:25 2023 +0530
+
+    FIPS Provider Enablement (#6)
+    
+    * FIPS Provider Enablement
+    
+    Added Dbus interfaces, properties to enable FIPS provider.
+    The Dbus properties performs the following things
+    
+    1) Interface: xyz.openbmc_project.fips.mode
+    This Interface contains two methods which are responsible for
+       a) Enable FIPS provider
+       b) Disable FIPS provider
+    2) Interface: xyz.openbmc_project.fips.providers
+    This interface is responsible for having all available FIPS providers
+    3) Interface: xyz.openbmc_project.fips.status
+    This interface provides the Current Status of FIPS and the Version of
+    FIPS provider if Enabled
+    
+    Tested:
+    Manually called the Methods to Enable,Disable FIPS
+    with that the corresponding properties containing version, status
+    changes.
+    
+    Signed-off-by: Prithvi A Pai <prithvi.a.pai@intel.com>
+    
+    * added FIPSInstaller Service
+    
+    * addressed all comments
+    
+    * added line to eof
+    
+    * addressed all comments
+    
+    * header file and disbale comments addressed
+    
+    * addressed comments on install config
+    
+    * fixed file operation issue
+    
+    * addressing comments
+    
+    * disable install for build failure issue
+    
+    * addressed comments on FIPS renaming
+    
+    * makefile changes
+    
+    * whitespace changes
+    
+    * io_service to io_context fix
+    
+    * addressed comments on endl
+    
+    * chnaged names of services/interfaces/paths
+    
+    * address service file comments
+    
+    ---------
+    
+    Signed-off-by: Prithvi A Pai <prithvi.a.pai@intel.com>
+
+commit db6163b026a970e059b07ca218cb569f1fe5db24
+Author: jmbills <jasonm.bills@yahoo.com>
+Date:   Fri Jun 30 12:53:07 2023 -0600
+
+    Use variable for service install location (#4)
+    
+    After enabling 'usrmerge', the install location for systemd service
+    files changed. This uses a variable to get the installation location
+    instead of hardcoding it.
+    
+    Tested:
+    Confirmed that with 'usrmerge' enabled, the service file is correctly
+    installed.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 4478fee98c5e198cc3759c49e5c343ee0bafbcef
+Author: Vernon Mauery <vernon.mauery@linux.intel.com>
+Date:   Fri Oct 14 11:28:31 2022 -0700
+
+    Change c++ std to 20 (#3)
+    
+    Building things that use sdbusplus with gcc-12 requires
+    -std=c++-20 to successfully compile.
+    
+    Signed-off-by: Vernon Mauery <vernon.mauery@intel.com>
+
+commit efd90865f0d055be5db1064300eebc168b583f74
+Author: jmbills <jasonm.bills@yahoo.com>
+Date:   Fri Sep 23 10:25:20 2022 -0600
+
+    Add missing include for boost::flat_map (#2)
+    
+    A recent update to sdbusplus exposed a missing include. This adds the
+    include to fix the build.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 1cf60de11c5f13bd791402aef7f9a8d33de54c64
+Author: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+Date:   Mon Sep 27 22:47:29 2021 +0000
+
+    Adding README.md File for SecurityManager
+    
+    Testing -NA
+    
+    Change-Id: I0395460fd8512eb4f25284d9c4629e7da316af9f
+    Signed-off-by: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+
+commit 031025cd2239237412051950682899e004dea0fe
+Author: P Dheeraj Srujan Kumar <p.dheeraj.srujan.kumar@intel.com>
+Date:   Mon Jul 12 20:44:26 2021 +0530
+
+    checkUserSecurityBreach: Return on file open Failure
+    
+    When password file open fails, the functions needs to return
+    after logging the error.
+    
+    Tested: No regression observed
+    
+    Change-Id: Iac28894cbf5aa6e9fa247fed00ea52e77abe9d28
+    Signed-off-by: P Dheeraj Srujan Kumar <p.dheeraj.srujan.kumar@intel.com>
+
+commit 04f088f1e4dfeba5bdf1781b095a32bd5ee612ef
+Author: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+Date:   Mon Jun 8 17:29:13 2020 +0530
+
+    ASD is not starting automatically during BMC boot
+    
+    Issue:
+    Security manager randomly fails to the start the ASD.
+    
+    Security-manager is controlling the ASD service based on
+    special user enable and Remote debug Jumper.
+    In order to support WolfPass system, we are reading the
+    Product ID from EntityManager.
+    
+    There is very tiny window where EntityManager starts and a
+    security manager fails to read the product id (As Entity manager is
+    just start and SubTree Object is not created)
+    which lead to security-manager fails and unable to recover by itself.
+    So ASD service is not started automatically.
+    
+    Fix: Security-manager should wait for InterfaceAdded signal even
+    when it fails to read the Entity SubTree Object Mapper.
+    
+    Tested on Whitley:
+    
+    Check asd service starts when special user and Jumper is set
+    
+    1. Set the jumper and Set the special user
+    2. ASD service should run automatically.
+    
+    Check the security-manager detect the product ID when entity manager
+    is not started.
+    1. Stop the entity manager and security-manager and kill asd.
+    2. Run the secuirty-manager.
+    3. Security-manager should wait for InterfaceAdded signal.
+    4. ASD sevice is not started automatically.
+    5. Start the entity-manager.
+    6. security-manager should detect the ProductID and start the ASD.
+    
+    Check the security-manager detect the Product ID when entity- manager
+    is started already.
+    1. Stop the security-manager and kill the asd.
+    2. Run the security-manager.
+    4. Security-manager should able to read the Product Id from Entity mgr.
+    5. Start the ASD.
+    
+    Change-Id: I22ada71b3d8f308a1545314cd7f0913a001a7f83
+    Signed-off-by: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+
+commit a4a986ff2129ac012df6d8a97bd6f76f16ca58b0
+Author: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+Date:   Fri Nov 15 17:16:28 2019 +0530
+
+    Add Security Manager - ASD/User security Event
+    
+    Daemon for below functionalities
+    1. To start the AtScaleDebug service when remote debug on
+       jumper & special user status and enabled.
+    2. To stop the AtScaleDebug service when remote debug jumper
+       disabled and disabled the special user status.
+    3. Log the corresponding AtScaleDebug Events
+    4. Check for user security breach and log the user security event.
+    
+    Tested:
+    Detecting Remote Debug jumper - enabled or disabled
+    Enable the ASD/Disable the ASD based on jumper and spl user password
+    Corresponding the ASD security Event should be logged
+    
+    Check for unsupported shell- user security event:
+    Change shell parameter for enabled user by
+    usermod --shell=/bin/csh <enabled username>
+    "SecurityUserUnsupportedShellEnabled" Event should be logged
+    
+    Check for unsupported shell removed - user security event:
+    change shell parameter for enabled user by
+    usermod --shell=/bin/sh <enabled username>
+    "SecurityUserUnsupportedShellRemoved" Event should be logged
+    
+    Check for Weak Password hashing algorithm Event:
+    change the password hashing algorithm by
+    edit file : /etc/pam.d/common-password -->sha512 to md5
+    set new password for any user.
+    "SecurityUserWeakHashAlgoEnabled" Event should be logged
+    
+    similar change from md5 to sha512 in /etc/pam.d/common-password file
+    Set new password for any user.
+    "SecurityUserStrongHashAlgoRestored" Event should be logged
+    
+    If root user is enabled
+    "SecurityUserRootEnabled" Event should be logged
+    
+    If root user is disabled
+    "SecurityUserRootDisabled" Event should be logged
+    
+    Change-Id: I88f8614df31df3f35e7d08d2e84aeef7a39edea4
+    Signed-off-by: Suryakanth Sekar <suryakanth.sekar@linux.intel.com>
+
+commit d8c4922b5c935a742afbc164f3338af137ef6717
+Author: EC TF Bind account <ec_sw_sl_git@intel.com>
+Date:   Fri Jun 16 09:57:42 2017 -0700
+
+    Initial empty repository
