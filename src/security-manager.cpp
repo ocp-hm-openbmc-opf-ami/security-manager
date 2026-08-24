@@ -443,10 +443,10 @@ static void fileShadowChangeHandler()
 
     std::array<char, 4096> buffer{};
     struct inotify_event* event = NULL;
-    int index = 0;
+    ssize_t index = 0;
     bool exec = 0;
 
-    int len = read(inotifyFd, buffer.data(), sizeof(buffer));
+    ssize_t len = read(inotifyFd, buffer.data(), sizeof(buffer));
     if (len < 0)
     {
         std::cerr << "fileChangeHandler length error: " << len;
@@ -507,10 +507,10 @@ static void filePwdChangeHandler()
 
     std::array<char, 4096> buffer{};
     struct inotify_event* event = NULL;
-    int index = 0;
+    ssize_t index = 0;
     bool exec = 0;
 
-    int len = read(inotifyPwdFd, buffer.data(), sizeof(buffer));
+    ssize_t len = read(inotifyPwdFd, buffer.data(), sizeof(buffer));
     if (len < 0)
     {
         std::cerr << "filePwdChangeHandler length error: " << len;
